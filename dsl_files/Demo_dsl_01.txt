@@ -1,0 +1,261 @@
+workspace "Getting Started" "This is a model of my software system." {
+
+    model {
+         projectManager = person "Project Manager" "Manages project portfolio"
+        softwareEngineer = person "Software Engineer" ""
+        automationUser = person "Automation User" ""
+        architect = person "Architect" ""
+        projectSh = person "Project Stakeholder"
+        admin = person "User Admin" ""
+        releaseengineer = person "Release Engineer" ""
+        programManager = person "Program Manager"
+        processExpert = person "Process expert"
+        
+        
+        AlmBusinessContext  = softwareSystem "ALM Software System" "."
+        projectManager ->  AlmBusinessContext "Manages plans and tracks progress"
+        softwareEngineer ->  AlmBusinessContext "Edits Engineering Artifacts"
+        architect ->  AlmBusinessContext "Manages relations between artifacts"
+        automationUser ->  AlmBusinessContext "Reports data and builds project deliverables"
+        projectSh ->  AlmBusinessContext "Reports data"
+        admin ->  AlmBusinessContext "Manages user data"
+        programManager ->  AlmBusinessContext "Manages product and project information"
+        processExpert ->  AlmBusinessContext "Manages process information"
+        releaseengineer -> AlmBusinessContext " ""
+        
+        AlmDecomposition = softwareSystem "ALM Software System- Decomposition"
+       
+        #Eva context diagram
+        jenkinsCIServer = softwareSystem "Jenkins CI Server"
+        webBrowser = softwareSystem "Web Browser"
+        eclipseIDE = softwareSystem "Eclipse IDE"
+        ibmRTC = softwareSystem "IBM RTC"
+        EVA = softwareSystem "EVA" {
+            buildAutomation = container "Build Automation"{
+            jenkinsClient = component "Jenkins Client"
+            providerClient = component "Model Provider Client"
+            }
+                 
+        
+            #Relationship between EVA and software systems
+            jenkinsCIServer -> EVA "Generate software version report"
+            EVA -> ibmRTC "Get change data"
+            EVA -> ibmRTC "Get work item"
+            eclipseIDE -> EVA "Generate software version report"
+            webBrowser -> EVA "Configure"
+         
+        
+            dataAnalysis = container "Data Analysis"
+            services = container "Services" {
+                reviewSC = component "Review SC"
+                errataSC = component "Errata SC"
+                modelProviderSR = component "Model Provider SR"
+                actionsSR = component "Actions SR"
+                ExecutorLifecycleSC = component "Executor Lifecycle SC"
+                ExecutorSC = component "Executor SC"
+                persistanceSC = component "Persistance SC"
+                
+            }
+            
+            
+            presentation = container "Presentation" {
+                
+                clientErrata = component   "Client errata"
+                clientReview = component   "Client review"
+                clientCommon = component   "Client Common"
+                clientExpensivescenario = component   "Client Expensive scenario"
+               
+                
+            
+            }
+            
+    
+
+            
+        #Relationship between containers
+        buildAutomation -> dataAnalysis "Generate report" 
+        dataAnalysis -> services "Fetch configuration and reportable data"
+        services -> dataAnalysis "Generate report"
+        presentation -> services "Request report"
+        
+        #Relationship between components of Presentation
+        clientErrata -> clientCommon "uses"
+        clientErrata -> clientExpensivescenario "uses"
+         clientErrata -> services "uses"
+         clientReview -> clientCommon "uses"
+         clientReview -> services "Requests via REST"
+         clientErrata -> services "Requests via REST"
+         
+        #Relationship between components of Build Automation
+        
+        jenkinsClient -> providerClient "uses"
+        jenkinsClient -> dataAnalysis "Review Processing Report Generator Errata"
+        providerClient -> dataAnalysis "Model provider processing Model Libs"
+        
+        #Relationship between components of Services
+        reviewSC -> executorLifecycleSC "uses"
+        reviewSC -> executorSC "uses"
+        reviewSC -> actionsSR "uses"
+        
+        
+        
+         
+         
+        
+        
+        
+            
+            
+        }
+        EVA -> AlmDecomposition "Is-part of"
+        dng = softwareSystem "DNG"{
+            widgets = container "DNG Widgets" {
+                dcTree = component "DC Tree"
+                properties {
+                        "DC Tree" "Architectural documentation"
+                         url https://www.intranet.bosch.com/doku/alm-arch/dng/dng.pdf 
+        
+        
+    }
+                splitJoin = component "Split-Join Widget"
+                properties {
+                        "Split-Join Widget" "Architectural documentation"
+                         url https://www.intranet.bosch.com/doku/alm-arch/dng/dng.pdf 
+        
+        
+    }
+                changeLink = component "Change- Link widget" 
+                correctIncorrectLinks = component "Correct Incorrect Links"
+                
+            }
+            tools = container "DNG Standalone Tools" {
+                projectProperties = component "Project Properties"
+            }
+        }
+         dng -> AlmDecomposition "Is-part of"
+        
+    
+    }
+    
+
+
+
+    views {
+        systemContext AlmBusinessContext "BusinessContext"  {
+            include *
+            animation {
+             projectManager
+             softwareEngineer
+             AlmBusinessContext
+             architect
+             projectSh
+             admin
+             releaseengineer
+             programManager
+             processExpert
+            }
+            autoLayout
+        }
+        
+        systemContext EVA "TechnicalContext"  {
+            include *
+            animation {
+             jenkinsCIServer
+             eclipseIDE
+             ibmRTC
+             webBrowser
+            }
+            autoLayout
+        }
+        
+        
+        container dng "widgets" {
+            include *
+            animation {
+             widgets
+             tools
+                
+            }
+            autoLayout
+        }
+        container EVA "EVA" {
+            include *
+            animation {
+            dataAnalysis
+            services
+            presentation
+            buildAutomation
+                
+            }
+            autoLayout
+        }
+        component presentation "Presetation" {
+            include *
+            animation {
+            clientErrata
+                
+            }
+            autoLayout
+        }
+        component buildAutomation "BuildAutomation" {
+            include *
+            animation {
+            jenkinsClient
+                
+            }
+            autoLayout
+        }
+        component services "Services" {
+            include *
+            animation {
+            reviewSC
+                
+            }
+            autoLayout
+        }
+        component widgets "dcTree" {
+            include *
+            animation {
+            dcTree
+                
+            }
+            autoLayout
+        }
+
+        styles {
+            element "Software System" {
+                background #1168bd
+                color #ffffff
+            }
+            element "Person" {
+                shape person
+                background #08427b
+                color #ffffff
+            }
+             element "Container" {
+                background #438dd5
+                color #ffffff
+            }
+            element "Component" {
+                background #438dd5
+                color #ffffff
+            }
+        }
+    }
+    
+    views {
+        systemContext  AlmDecomposition "AlmDecomposition"  {
+            include *
+            animation {
+            dng 
+            EVA
+           AlmDecomposition
+            
+             
+            }
+            autoLayout
+        }
+    
+    
+    
+}
