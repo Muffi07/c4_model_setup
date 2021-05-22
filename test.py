@@ -1,4 +1,7 @@
-import pytest
+# import pytest
+# import xmlrunner
+import unittest
+
 from main import DslMain
 
 
@@ -11,4 +14,11 @@ def test_method():
 
 
 if __name__ == '__main__':
+    import xmlrunner
+
     test_method()
+    unittest.main(
+        testRunner=xmlrunner.XMLTestRunner(output='test-reports'),
+        failfast=False,
+        buffer=False,
+        catchbreak=False)

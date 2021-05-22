@@ -7,7 +7,7 @@ workspace "Getting Started" "This is a model of my software system." {
         architect = person "Architect" ""
         projectSh = person "Project Stakeholder"
         admin = person "User Admin" ""
-        releaseengineer = person "Release Engineer" ""
+        releaseEngineer = person "Release Engineer" ""
         programManager = person "Program Manager"
         processExpert = person "Process expert"
         
