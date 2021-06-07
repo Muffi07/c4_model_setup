@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><testsuites><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="3" time="0.203" timestamp="2021-05-22T20:00:34.291948" hostname="Muffi"><testcase classname="pytest_01" name="test_sqrt" time="0.002" /><testcase classname="pytest_01" name="test_square" time="0.002" /><testcase classname="pytest_01" name="test_equality" time="0.003"><failure message="assert 10 == 11&#10;  +10&#10;  -11">def test_equality():
+<?xml version="1.0" encoding="utf-8"?><testsuites><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="3" time="0.108" timestamp="2021-06-07T12:24:00.548199" hostname="Muffi"><testcase classname="pytest_01" name="test_sqrt" time="0.001" /><testcase classname="pytest_01" name="test_square" time="0.001" /><testcase classname="pytest_01" name="test_equality" time="0.001"><failure message="assert 10 == 11&#10;  +10&#10;  -11">def test_equality():
 &gt;       assert 10 == 11
 E       assert 10 == 11
 E         +10

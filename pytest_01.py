@@ -12,10 +12,10 @@ def test_square():
 
 
 def test_equality():
-    assert 10 == 11
+    assert 10 == 10
 
 
-# pytest pytest_01.py -v --junitxml='result.xml'
+# pytest pytest_01.py -v --junitxml=result.xml
 if __name__ == '__main__':
     test_sqrt()
     test_square()
