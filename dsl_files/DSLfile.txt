@@ -166,7 +166,7 @@ workspace "Getting Started" "This is a model of my software system." {
                 properties {
                         "DC Tree" "Architectural documentation"
                         #url of the xml file in github
-                         url https://www.intranet.bosch.com/doku/alm-arch/dng/dng.pdf 
+                         url https://www.intranet.bosch.com/doku/alm-arch/dng/dng.xml
         
         
     }

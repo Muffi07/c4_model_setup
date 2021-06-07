@@ -32,7 +32,7 @@ class DslMain:
             if data != '':
                 print('The DSL file has been read.')
                 print('Length of file is', len(str(data)))
-                print('File content is - ', '\n', data)
+                # print('File content is - ', '\n', data)
                 return data
 
 
