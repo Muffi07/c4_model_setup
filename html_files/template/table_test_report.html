@@ -1,0 +1,31 @@
+<html>
+  <body >
+  <H1 style="text-align:center;">Test case result dashboard</H1>
+  <H2>
+
+
+  </H2>
+  <table style="margin-left:auto;margin-right:auto;vertical-align: middle;">
+        <TR>
+            {% for heading in headings %}
+            <TH style="text-align:center;padding: 12px 12px 12px 12px;">{{ heading }}</TH>
+            {% endfor %}
+        </TR>
+        {% for row in data %}
+        <TR>
+            {% for cell in row %}
+            {% if cell == True %}
+            <td style="background-color:#00FF00; text-align:center">Pass</td>
+            {% elif cell == False %}
+            <td style="background-color:#FF0000; text-align:center">Fail</td>
+            {% elif cell == "" %}
+            <td>    </td>
+            {% else %}
+            <td style="text-align:center">{{ cell }}</td>
+            {% endif %}
+            {% endfor %}
+        </TR>
+        {% endfor %}
+</table>
+</body>
+</html>

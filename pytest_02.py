@@ -6,27 +6,31 @@ import os
 
 
 class TestDslFile:
-    dsl_obj = DslMain('./dsl_files')
-
     xml_file_name = ''
+    dsl_obj = None
 
-    def test_dsl_file_check(self, dsl_obj):
+    # def __init__(self, dir_path):
+    #     self.xml_file_name = ''
+    #     self.dsl_obj = DslMain(dir_path)
+
+    def test_dsl_file_check(self, dsl_object):
         # dsl_obj = DslMain('./dsl_files')
-        filename = dsl_obj.file_name
+        self.dsl_obj = dsl_object
+        filename = self.dsl_obj.file_name
         print('Before 1st assert-----1111111111111')
         assert filename != ''
 
-    def test_dsl_file_content(self, dsl_obj):
+    def test_dsl_file_content(self):
         # dsl_obj = DslMain('./dsl_files')
-        filename = dsl_obj.file_name
-        file_content = dsl_obj.load_file(filename)
+        filename = self.dsl_obj.file_name
+        file_content = self.dsl_obj.load_file(filename)
         print('Before 2nd assert-----2222222222222')
         assert len(file_content) > 1
 
-    def test_dsl_file_url(self, dsl_obj):
+    def test_dsl_file_url(self):
         # dsl_obj = DslMain('./dsl_files')
-        filename = dsl_obj.file_name
-        file_content = dsl_obj.load_file(filename)
+        filename = self.dsl_obj.file_name
+        file_content = self.dsl_obj.load_file(filename)
 
         print('Before 2nd assert-----2222222222222')
         if file_content.find('url') != -1:
@@ -42,37 +46,23 @@ class TestDslFile:
             # print('Inside innermost if.')
             print(file_content_list[line_num][-4:])
             if file_content_list[line_num][-4:] != '.xml':
+                assert False, "XML file path is not present in the DSL file"
+            else:
                 xml_file_name_start = file_content_list[line_num].rfind('/') + 1
                 self.xml_file_name = file_content_list[line_num][xml_file_name_start:]
-                assert False, "XML file path is not present in the DSL file"
+                print('The xml_file_name inside test_dsl_file_url - ', self.xml_file_name)
+                assert True
         else:
             assert False, "URL is not present in the DSL file"
-        assert True
 
-    def test_dsl_file_report_xml_check(self, dsl_obj):
-        # dsl_obj = DslMain('./dsl_files')
+    def test_dsl_file_report_xml_check(self):
         print('This is inside last method ---- ', self.xml_file_name)
-        filename = dsl_obj.file_name
-        file_content = dsl_obj.load_file(filename)
-        file_content_list = file_content.split('\n')
-
-        line_num = len(file_content_list) - 1
-        print('Inside 1st if     ++++++++++++')
-        while line_num > 0:
-            # print(line_num)
-            if file_content_list[line_num].find('url') != -1:
-                # print('Inside if of line condition ', line_num)
-                break
-            line_num = line_num - 1
-
-        xml_file_name_start = file_content_list[line_num].rfind('/') + 1
-        xml_file_name = file_content_list[line_num][xml_file_name_start:]
-        print('xml_file_name is - ', xml_file_name)
+        print('xml_file_name is - ', self.xml_file_name)
         current_dir = os.path.abspath(os.getcwd())
         print('This is current working directory path - ', current_dir)
         ext_report_xml_dir = current_dir + '\\external_report_xmls'
         print(os.listdir(ext_report_xml_dir))
-        if xml_file_name in os.listdir(ext_report_xml_dir):
+        if self.xml_file_name in os.listdir(ext_report_xml_dir):
             assert True, "Test Report XML file found."
         else:
             assert False, "Test Report XML file NOT found."
@@ -82,9 +72,12 @@ class TestDslFile:
 
 if __name__ == '__main__':
     # dsl_obj = DslMain('./dsl_files')
+    dsl_dir = './dsl_files'
+
+    dsl_obj = DslMain(dsl_dir)
     test_dsl_file_obj = TestDslFile
     print('It is inside main of pytest--------')
-    test_dsl_file_obj.test_dsl_file_check(dsl_obj)
-    test_dsl_file_obj.test_dsl_file_content()
-    test_dsl_file_obj.test_dsl_file_url()
-    test_dsl_file_obj.test_dsl_file_report_xml_check()
+    test_dsl_file_obj.test_dsl_file_check(test_dsl_file_obj, dsl_obj)
+    test_dsl_file_obj.test_dsl_file_content(test_dsl_file_obj)
+    test_dsl_file_obj.test_dsl_file_url(test_dsl_file_obj)
+    test_dsl_file_obj.test_dsl_file_report_xml_check(test_dsl_file_obj)
