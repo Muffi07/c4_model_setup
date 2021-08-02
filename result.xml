@@ -1,1 +1,39 @@
-<?xml version="1.0" encoding="utf-8"?><testsuites><testsuite name="pytest" errors="0" failures="0" skipped="0" tests="4" time="0.131" timestamp="2021-07-26T00:48:48.305004" hostname="Muffi"><testcase classname="pytest_01" name="test_dsl_file_check" time="0.003" /><testcase classname="pytest_01" name="test_dsl_file_content" time="0.004" /><testcase classname="pytest_01" name="test_dsl_file_url" time="0.004" /><testcase classname="pytest_01" name="test_dsl_file_report_check" time="0.004" /></testsuite></testsuites>
+<?xml version="1.0" encoding="utf-8"?><testsuites><testsuite name="pytest" errors="1" failures="3" skipped="0" tests="4" time="0.208" timestamp="2021-07-30T00:19:22.257533" hostname="Muffi"><testcase classname="pytest_03.TestDslFile" name="test_dsl_file_check" time="0.001"><error message="failed on setup with &quot;file C:\Users\Mustafa\PycharmProjects\c4_model_setup\pytest_03.py, line 17&#10;      def test_dsl_file_check(self, dsl_object):&#10;E       fixture 'dsl_object' not found&#10;&gt;       available fixtures: cache, capfd, capfdbinary, caplog, capsys, capsysbinary, doctest_namespace, monkeypatch, pytestconfig, record_property, record_testsuite_property, record_xml_attribute, recwarn, tmp_path, tmp_path_factory, tmpdir, tmpdir_factory&#10;&gt;       use 'pytest --fixtures [testpath]' for help on them.&#10;&#10;C:\Users\Mustafa\PycharmProjects\c4_model_setup\pytest_03.py:17&quot;">file C:\Users\Mustafa\PycharmProjects\c4_model_setup\pytest_03.py, line 17
+      def test_dsl_file_check(self, dsl_object):
+E       fixture 'dsl_object' not found
+&gt;       available fixtures: cache, capfd, capfdbinary, caplog, capsys, capsysbinary, doctest_namespace, monkeypatch, pytestconfig, record_property, record_testsuite_property, record_xml_attribute, recwarn, tmp_path, tmp_path_factory, tmpdir, tmpdir_factory
+&gt;       use 'pytest --fixtures [testpath]' for help on them.
+
+C:\Users\Mustafa\PycharmProjects\c4_model_setup\pytest_03.py:17</error></testcase><testcase classname="pytest_03.TestDslFile" name="test_dsl_file_content" time="0.002"><failure message="AttributeError: 'NoneType' object has no attribute 'load_file'">self = &lt;pytest_03.TestDslFile object at 0x00000213E38C4670&gt;
+
+    def test_dsl_file_content(self):
+        # dsl_obj = DslMain('./dsl_files')
+        # filename = TestDslFile.dsl_obj.file_name
+&gt;       file_content = TestDslFile.dsl_obj.load_file(TestDslFile.file_name)
+E       AttributeError: 'NoneType' object has no attribute 'load_file'
+
+pytest_03.py:27: AttributeError</failure></testcase><testcase classname="pytest_03.TestDslFile" name="test_dsl_file_url" time="0.001"><failure message="AttributeError: 'NoneType' object has no attribute 'load_file'">self = &lt;pytest_03.TestDslFile object at 0x00000213E38C7B80&gt;
+
+    def test_dsl_file_url(self):
+        # dsl_obj = DslMain('./dsl_files')
+        # filename = self.dsl_obj.file_name
+&gt;       file_content = TestDslFile.dsl_obj.load_file(TestDslFile.file_name)
+E       AttributeError: 'NoneType' object has no attribute 'load_file'
+
+pytest_03.py:34: AttributeError</failure></testcase><testcase classname="pytest_03.TestDslFile" name="test_dsl_file_report_xml_check" time="0.003"><failure message="AssertionError: Test Report XML file NOT found.&#10;assert False">self = &lt;pytest_03.TestDslFile object at 0x00000213E38C4040&gt;
+
+    def test_dsl_file_report_xml_check(self):
+        print('This is inside last method ---- ', TestDslFile.xml_file_name)
+        print('xml_file_name is - ', TestDslFile.xml_file_name)
+        current_dir = os.path.abspath(os.getcwd())
+        print('This is current working directory path - ', current_dir)
+        ext_report_xml_dir = current_dir + '\\external_report_xmls'
+        print(os.listdir(ext_report_xml_dir))
+        if TestDslFile.xml_file_name in os.listdir(ext_report_xml_dir):
+            assert True, "Test Report XML file found."
+        else:
+&gt;           assert False, "Test Report XML file NOT found."
+E           AssertionError: Test Report XML file NOT found.
+E           assert False
+
+pytest_03.py:69: AssertionError</failure></testcase></testsuite></testsuites>

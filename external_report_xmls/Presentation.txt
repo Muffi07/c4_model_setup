@@ -1,0 +1,39 @@
+-------------------------------------------------------------------------------
+Test set: com.bosch.rtc.ecl.client.eva.errata.ui.tests.AllModelTestSuite
+-------------------------------------------------------------------------------
+Tests run: 35, Failures: 0, Errors: 0, Skipped: 3, Time elapsed: 18.292 s - in com.bosch.rtc.ecl.client.eva.errata.ui.tests.AllModelTestSuite
+testIsEqualTo(com.bosch.rtc.ecl.client.eva.errata.ui.tests.AboutParameterTest)  Time elapsed: 0.011 s
+testCalcHashCode(com.bosch.rtc.ecl.client.eva.errata.ui.tests.AboutParameterTest)  Time elapsed: 0 s
+testGetVersion(com.bosch.rtc.ecl.client.eva.errata.ui.tests.AboutParameterTest)  Time elapsed: 0 s
+testGetDescription(com.bosch.rtc.ecl.client.eva.errata.ui.tests.AboutParameterTest)  Time elapsed: 0 s
+testConstructorExc1(com.bosch.rtc.ecl.client.eva.errata.ui.tests.AbstractExecutionParameterTest)  Time elapsed: 0.001 s
+testConstructorExc2(com.bosch.rtc.ecl.client.eva.errata.ui.tests.AbstractExecutionParameterTest)  Time elapsed: 0.001 s
+testHashCodeEquals(com.bosch.rtc.ecl.client.eva.errata.ui.tests.AbstractExecutionParameterTest)  Time elapsed: 0 s
+testConstructor(com.bosch.rtc.ecl.client.eva.errata.ui.tests.AbstractExecutionParameterTest)  Time elapsed: 0 s
+testConstructorAndGetters(com.bosch.rtc.ecl.client.eva.errata.ui.tests.ExecutionParametersTest)  Time elapsed: 0.001 s
+testHashCode(com.bosch.rtc.ecl.client.eva.errata.ui.tests.ExecutionParametersTest)  Time elapsed: 0 s
+testEquals(com.bosch.rtc.ecl.client.eva.errata.ui.tests.ExecutionParametersTest)  Time elapsed: 0 s
+test(com.bosch.rtc.ecl.client.eva.errata.ui.tests.UserCredentialsResolverTest)  Time elapsed: 0.076 s
+testIsEqualTo(com.bosch.rtc.ecl.client.eva.errata.ui.tests.UserParameterTest)  Time elapsed: 0.001 s
+testGetUserCredentialsFilePath(com.bosch.rtc.ecl.client.eva.errata.ui.tests.UserParameterTest)  Time elapsed: 0 s
+testGetUserIdFromCredentialsFile(com.bosch.rtc.ecl.client.eva.errata.ui.tests.UserParameterTest)  Time elapsed: 0.02 s
+testCalcHashCode(com.bosch.rtc.ecl.client.eva.errata.ui.tests.UserParameterTest)  Time elapsed: 0 s
+testGetUserDecryptionKeyFilePath(com.bosch.rtc.ecl.client.eva.errata.ui.tests.UserParameterTest)  Time elapsed: 0 s
+testGetUserDecryptionKeyFile(com.bosch.rtc.ecl.client.eva.errata.ui.tests.UserParameterTest)  Time elapsed: 0.004 s
+testGetUserPasswordFromCredentialsFile(com.bosch.rtc.ecl.client.eva.errata.ui.tests.UserParameterTest)  Time elapsed: 0 s
+testGetUserId(com.bosch.rtc.ecl.client.eva.errata.ui.tests.UserParameterTest)  Time elapsed: 0 s
+testGetUserPassword(com.bosch.rtc.ecl.client.eva.errata.ui.tests.UserParameterTest)  Time elapsed: 0 s
+testExceptionWhenEncrypting(com.bosch.rtc.ecl.client.eva.errata.ui.tests.LoginCredentialsReaderTest) skipped
+testFilesAreAlreadyExisting(com.bosch.rtc.ecl.client.eva.errata.ui.tests.LoginCredentialsReaderTest)  Time elapsed: 1.925 s
+testFilesAreNewlyCreated(com.bosch.rtc.ecl.client.eva.errata.ui.tests.LoginCredentialsReaderTest)  Time elapsed: 2.308 s
+testFilesAreNewlyCreatedUsingEnterButton(com.bosch.rtc.ecl.client.eva.errata.ui.tests.LoginCredentialsReaderTest)  Time elapsed: 2.455 s
+testFolderIsSetInDialog(com.bosch.rtc.ecl.client.eva.errata.ui.tests.LoginCredentialsReaderTest)  Time elapsed: 0.696 s
+testFolderSelection(com.bosch.rtc.ecl.client.eva.errata.ui.tests.LoginCredentialsReaderTest) skipped
+testMandatoryFieldsNotGiven1(com.bosch.rtc.ecl.client.eva.errata.ui.tests.LoginCredentialsReaderTest)  Time elapsed: 1.511 s
+testMandatoryFieldsNotGiven2(com.bosch.rtc.ecl.client.eva.errata.ui.tests.LoginCredentialsReaderTest)  Time elapsed: 1.504 s
+testMandatoryFieldsNotGiven3(com.bosch.rtc.ecl.client.eva.errata.ui.tests.LoginCredentialsReaderTest)  Time elapsed: 1.501 s
+testMandatoryFieldsNotGiven4(com.bosch.rtc.ecl.client.eva.errata.ui.tests.LoginCredentialsReaderTest)  Time elapsed: 1.504 s
+testMandatoryFieldsNotGiven5(com.bosch.rtc.ecl.client.eva.errata.ui.tests.LoginCredentialsReaderTest)  Time elapsed: 1.518 s
+testMandatoryFieldsNotGiven6(com.bosch.rtc.ecl.client.eva.errata.ui.tests.LoginCredentialsReaderTest)  Time elapsed: 1.5 s
+testMandatoryFieldsNotGiven7(com.bosch.rtc.ecl.client.eva.errata.ui.tests.LoginCredentialsReaderTest)  Time elapsed: 1.507 s
+testResetButton(com.bosch.rtc.ecl.client.eva.errata.ui.tests.LoginCredentialsReaderTest) skipped

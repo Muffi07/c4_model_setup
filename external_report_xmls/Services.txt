@@ -1,0 +1,9 @@
+-------------------------------------------------------------------------------
+Test set: com.bosch.rtc.eva.server.errata.integrationtests.delivery.DWIProcessRequestTest
+-------------------------------------------------------------------------------
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 5.786 s - in com.bosch.rtc.eva.server.errata.integrationtests.delivery.DWIProcessRequestTest
+validWorkItemType(com.bosch.rtc.eva.server.errata.integrationtests.delivery.DWIProcessRequestTest)  Time elapsed: 4.377 s
+invalidWorkItem(com.bosch.rtc.eva.server.errata.integrationtests.delivery.DWIProcessRequestTest)  Time elapsed: 0.352 s
+dwiTypeWithTemplaceChange(com.bosch.rtc.eva.server.errata.integrationtests.delivery.DWIProcessRequestTest)  Time elapsed: 0.327 s
+InAccesssibleWorkItem(com.bosch.rtc.eva.server.errata.integrationtests.delivery.DWIProcessRequestTest)  Time elapsed: 0.341 s
+nonDeliveryWIType(com.bosch.rtc.eva.server.errata.integrationtests.delivery.DWIProcessRequestTest)  Time elapsed: 0.34 s

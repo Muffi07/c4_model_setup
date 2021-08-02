@@ -44,10 +44,10 @@ workspace "Getting Started" "This is a model of my software system." {
             EVA -> ibmRTC "Get work item"
             eclipseIDE -> EVA "Generate software version report"
             webBrowser -> EVA "Configure"
+            
          
             #Data Analysis container and its components
             dataAnalysis = container "Data Analysis"{
-           
                 url Data_Analysis.txt
                 errata = component "Errata"
                 review = component "Review"
@@ -60,7 +60,7 @@ workspace "Getting Started" "This is a model of my software system." {
            
             #Services container and its components
             services = container "Services" {
-                url  Services.txt
+                url Services.txt
                 reviewSC = component "Review SC"
                 errataSC = component "Errata SC"
                 modelProviderSR = component "Model Provider SR"
@@ -73,7 +73,6 @@ workspace "Getting Started" "This is a model of my software system." {
             
             #Presentation container and its components
             presentation = container "Presentation" {
-            
                 url Presentation.txt
                 
                 clientErrata = component   "Client errata"
@@ -96,6 +95,8 @@ workspace "Getting Started" "This is a model of my software system." {
         jenkinsCIServer -> buildAutomation "Request ReviewErrata report from Jenkins job"
         eclipseIDE -> presentation "Request ReviewErrata report from client UI"
         services -> ibmRTC "Fetch configuration and reportable data"
+        buildAutomation -> ibmRTC "Fetch configuration and reportable data"
+
         
         #Relationship between components of Presentation
         clientErrata -> clientCommon "uses"
@@ -149,18 +150,7 @@ workspace "Getting Started" "This is a model of my software system." {
         reportGenerator -> processing "uses"
         reportGenerator -> libs "uses"
         services -> modelProvider "Executor SC Model Provider SC"
-        services -> reportGenerator "Executor SC"
-        
-        
-        
-        
-         
-         
-        
-        
-        
-            
-            
+        services -> reportGenerator "Executor SC"  
         }
         EVA -> AlmDecomposition "Is-part of"
         
@@ -168,6 +158,7 @@ workspace "Getting Started" "This is a model of my software system." {
         
         dng = softwareSystem "DNG"{
             widgets = container "DNG Widgets" {
+                url widgets.txt
                 dcTree = component "DC Tree"
                 properties {
                         "DC Tree" "Architectural documentation"
@@ -186,11 +177,37 @@ workspace "Getting Started" "This is a model of my software system." {
                 
             }
             tools = container "DNG Standalone Tools" {
+                url Standalone_Tools.txt
                 projectProperties = component "Project Properties"
             }
         }
          dng -> AlmDecomposition "Is-part of"
         
+        
+        deploymentEnvironment "Client/Server based EVA deployment" {
+            deploymentNode "IBM Jazz (CCM) Server"  "EVA Server" {
+                containerInstance dataAnalysis
+                containerInstance services
+                softwareSystemInstance ibmRTC "IBM RTC Server API"
+                
+                }
+            deploymentNode "Eclipse IDE" "Eclipse Client" {
+                containerInstance presentation
+                
+            }
+        }
+        deploymentEnvironment "Jenkins-based EVA deployment" {
+            deploymentNode "Jenkins Build Server"  "Jenkins" {
+                containerInstance buildAutomation
+                containerInstance dataAnalysis
+                
+                
+                }
+            deploymentNode "IBM Jazz (CCM) Server" "CCM Server" {
+                softwareSystemInstance ibmRTC "IBM RTC Java Client API"
+                
+            }
+        }
     
     }
     
@@ -320,6 +337,19 @@ workspace "Getting Started" "This is a model of my software system." {
             }
             autoLayout
         }
+        }
+        views {
+        deployment * "Client/Server based EVA deployment" {
+            include *
+            autolayout
+        }
+        deployment * "Jenkins-based EVA deployment" {
+            include *
+            autolayout
+        }
+
+        
+    }
     
     
     
