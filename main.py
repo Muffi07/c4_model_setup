@@ -38,7 +38,7 @@ if __name__ == '__main__':
     name_cont_dict, cont_dict, name_cont_map_dict, failed_cont_list = dslChk.dsl_file_container_chk()
     print(cont_dict, failed_cont_list)
     cont_relation_dict = dslChk.dsl_file_cont_relation()
-    dslChk.dsl_file_depl_env()
+    env_dict = dslChk.dsl_file_depl_env()
 
 
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/

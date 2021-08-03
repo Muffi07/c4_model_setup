@@ -79,7 +79,7 @@ class DslFileCheck:
                     self.cont_list_complete.append(container_value)
                     name_cont_dict[self.file_data_list[i][indx_1 + 1:indx_2]] = product
                     cont_dict[container_value] = product
-                    name_cont_map_dict[container_value] = self.file_data_list[i][indx_1 + 1:indx_2]
+                    name_cont_map_dict[self.file_data_list[i][indx_1 + 1:indx_2]] = container_value
                     # print(name_cont_dict)
                     # print(cont_dict)
                     if j != 0:
@@ -130,6 +130,7 @@ class DslFileCheck:
                             break
 
     def dsl_file_cont_relation(self):
+        container_status_dict = {key: None for key in self.cont_list_complete}
         for product in self.name_prod_dict:
             # name_cont_dict = {}
             # cont_list = []
@@ -148,8 +149,22 @@ class DslFileCheck:
                                 self.cont_relation_dict[cont01] = cont02
                         else:
                             break
+            for item in container_status_dict:
+                if item in self.fail_test:
+                    container_status_dict[item] = False
+                else:
+                    container_status_dict[item] = True
+
+            for i in range(len(self.cont_relation_dict)):
+                for item in container_status_dict:
+                    if item in self.cont_relation_dict.keys() and not container_status_dict[self.cont_relation_dict[item]]:
+                        container_status_dict[item] = container_status_dict[self.cont_relation_dict[item]]
+
+        print("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
+        print("Containers status after Relation - ", container_status_dict)
+        # self.container_status_dict = container_status_dict
         print("Relation dictionary - ", self.cont_relation_dict)
-        return self.cont_relation_dict
+        return container_status_dict
 
     def dsl_file_depl_env(self):
         depl_env_dict = {}
@@ -182,15 +197,16 @@ class DslFileCheck:
             cont_list = []
             cont_index_list = []
             j = 0
+            env_dependancy = []
             for i in range(int(self.depl_env_dict[env]) + 1, len(self.file_data_list) - 1):
-                depl_env_dict[env] = []
-                if "containerInstance" in self.file_data_list[i]:
 
+                if "containerInstance" in self.file_data_list[i]:
                     env_cont = self.file_data_list[i].split()[1]
                     print("containerInstance - ", env_cont)
-                    depl_env_dict[env] = depl_env_dict[env].append(env_cont)
+                    env_dependancy.append(env_cont)
                 if "deploymentEnvironment" in self.file_data_list[i]:
                     break
+            self.depl_env_dict[env] = env_dependancy
 
         print("After Changes ====================== ", depl_env_dict)
-        return depl_env_dict
+        return self.depl_env_dict
