@@ -13,6 +13,8 @@ class DSLDashboard:
     env_table_data = []
     headings_container_table = []
     test_status = []
+    fail_cont_dict = {}
+    failure_msg = ""
 
     def product_status(self, products_dict, containers_dict, failed_containers_dict):
         # headings_product_table = ["Products", "Status"]
@@ -23,7 +25,7 @@ class DSLDashboard:
             for container in containers_dict:
                 if containers_dict[container] == product:
                     this_container = container
-                    if this_container in failed_containers_dict.keys():
+                    if this_container in failed_containers_dict:
                         status = False
                         break
             if status:
@@ -44,7 +46,7 @@ class DSLDashboard:
             env_table_data_temp = [env]
             status = True
             for container in env_dict[env]:
-                if container in failed_containers_dict.keys():
+                if container in failed_containers_dict:
                     status = False
                     break
             if status:
@@ -59,7 +61,8 @@ class DSLDashboard:
         print("This is the list for Product table ---------- ")
         print(env_table_data)
 
-    def each_product_status(self, products_dict, name_cont_dict, name_cont_map_dict, container_status_dict):
+    def each_product_status(self, products_dict, name_cont_dict,
+                            name_cont_map_dict, container_status_dict, failed_cont_dict):
         # headings_product_table = ["Products", "Status"]
         headings_container_table = []
         test = []
@@ -68,8 +71,8 @@ class DSLDashboard:
             headings_container_table_temp = ["Tests"]
             container_name = []
             table_data_client = ["Client(SWT Bot)"]
-            table_data_ser = ["Server(Integration tests"]
-            table_data_smoke = ["Smoke tests(manual)"]
+            table_data_ser = ["Server(Integration tests)"]
+            table_data_smoke = ["Demo build for Jenkins Client"]
             test_temp = [table_data_client, table_data_ser, table_data_smoke]
 
             for container in name_cont_dict:
@@ -88,21 +91,32 @@ class DSLDashboard:
         print("Container table data - ", test)
         self.headings_container_table = headings_container_table
         self.test_status = test
+        failure_msg = ""
+        for item in failed_cont_dict:
+            # heading = "Container " + str(item) + " failure report - \n"
+            heading = "Container " + str(
+                list(name_cont_map_dict.keys())[list(name_cont_map_dict.values()).index(item)]) + \
+                      " failure report - \n"
+            failure_msg = failure_msg + "\n" + heading + failed_cont_dict[item] + "\n"
+
+        self.fail_cont_dict = failed_cont_dict
+        print("FAILURE MESSAGES - ", failure_msg)
+        self.failure_msg = failure_msg
 
     def html_dashboard(self):
-        status_pre = True
-        status_data = True
-        status_ser = True
-        status_build = True
-
-        status_server = status_data & status_ser
-
-        table_headings = ("Test Category", "Presentation", "Data Analysis", "Services", "Build Automation")
-        table_data_client = ("Client(SWT Bot)", status_pre, status_pre, status_pre, "")
-        table_data_ser = ("Server(Integration tests)", "", status_server, status_server, "")
-        table_data_smoke = ("Smoke tests(manual)", "", status_build, status_build, status_build)
-
-        table_data = (table_data_client, table_data_ser, table_data_smoke)
+        # status_pre = True
+        # status_data = True
+        # status_ser = True
+        # status_build = True
+        #
+        # status_server = status_data & status_ser
+        #
+        # table_headings = ("Test Category", "Presentation", "Data Analysis", "Services", "Build Automation")
+        # table_data_client = ("Client(SWT Bot)", status_pre, status_pre, status_pre, "")
+        # table_data_ser = ("Server(Integration tests)", "", status_server, status_server, "")
+        # table_data_smoke = ("Smoke tests(manual)", "", status_build, status_build, status_build)
+        #
+        # table_data = (table_data_client, table_data_ser, table_data_smoke)
 
         # print(table_data)
 
@@ -113,7 +127,10 @@ class DSLDashboard:
                                                         h_headings_container_table=self.headings_container_table,
                                                         h_test_status=self.test_status,
                                                         h_headings_env_table=self.headings_env_table,
-                                                        h_env_table_data=self.env_table_data)
+                                                        h_env_table_data=self.env_table_data,
+                                                        h_failed_cont_dict=self.fail_cont_dict,
+                                                        h_failure_msg=self.failure_msg
+                                                        )
         with open(self.output_file, 'w') as f: f.write(subs)
 
         script_path = os.path.dirname(os.path.abspath(__file__))
@@ -139,5 +156,5 @@ if __name__ == "__main__":
     html_obj = DSLDashboard()
     html_obj.product_status(prod_dict, cont_dict, failed_cont_dict)
     html_obj.env_status(env_dict, failed_cont_dict)
-    html_obj.each_product_status(prod_dict, name_cont_dict, name_cont_map_dict, container_status_dict)
+    html_obj.each_product_status(prod_dict, name_cont_dict, name_cont_map_dict, container_status_dict, failed_cont_dict)
     html_obj.html_dashboard()

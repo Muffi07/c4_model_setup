@@ -15,7 +15,10 @@
             {% if cell == True %}
             <td style="background-color:#00FF00; text-align:center; border: 1px solid black;">Pass</td>
             {% elif cell == False %}
-            <td style="background-color:#FF0000; text-align:center; border: 1px solid black;">Fail</td>
+<!--            <td style="background-color:#FF0000; text-align:center; border: 1px solid black;" title={{ h_failure_msg }}>Fail</td>-->
+            <td style="background-color:#FF4040; text-align:center; border: 1px solid black;">
+            <div title="{{ h_failure_msg }}">Fail</div>
+            </td>
             {% else %}
             <td style="text-align:center; border: 1px solid black;">{{ cell }}</td>
             {% endif %}
@@ -35,20 +38,26 @@
         <TR>
 
             {% for heading in headings %}
-            <TH style="text-align:center;padding: 12px 12px 12px 12px;">{{ heading }}</TH>
+            <TH style="text-align:center;padding: 12px 12px 12px 12px; border: 1px solid black;">{{ heading }}</TH>
             {% endfor %}
         </TR>
         {% for container_status in h_test_status[loop.index - 1] %}
         <TR>
             {% for cell in container_status %}
-            {% if cell == True %}
-            <td style="background-color:#00FF00; text-align:center">Pass</td>
-            {% elif cell == False %}
-            <td style="background-color:#FF0000; text-align:center">Fail</td>
+            {% if cell == "pass" %}
+            <td style="background-color:#00FF00; text-align:center; border: 1px solid black;">Pass</td>
+            {% elif cell == "fail" %}
+            <td style="background-color:#FF4040; text-align:center; border: 1px solid black;">
+                <div title="{{ h_failure_msg }}">Fail</div>
+            </td>
+            {% elif cell == "par_fail" %}
+            <td style="background-color:#FFFF25; text-align:center; border: 1px solid black;">
+                <div title="{{ h_failure_msg }}">Fail</div>
+            </td>
             {% elif cell == "" %}
             <td>    </td>
             {% else %}
-            <td style="text-align:center">{{ cell }}</td>
+            <td style="text-align:center; border: 1px solid black;">{{ cell }}</td>
             {% endif %}
             {% endfor %}
         </TR>
@@ -72,7 +81,9 @@
             {% if cell == True %}
             <td style="background-color:#00FF00; text-align:center; border: 1px solid black;">Pass</td>
             {% elif cell == False %}
-            <td style="background-color:#FF0000; text-align:center; border: 1px solid black;">Fail</td>
+            <td style="background-color:#FF4040; text-align:center; border: 1px solid black;">
+                <div title="{{ h_failure_msg }}">Fail</div>
+            </td>
             {% else %}
             <td style="text-align:center; border: 1px solid black;">{{ cell }}</td>
             {% endif %}

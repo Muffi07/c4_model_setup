@@ -1,6 +1,6 @@
 -------------------------------------------------------------------------------
 Test set: com.bosch.rtc.ecl.eva.model.provider.legacy.OldConfigSyntaxLinkTypeConverterTest
 -------------------------------------------------------------------------------
-Tests run: 2, Failures: 2, Errors: 0, Skipped: 0, Time elapsed: 0.098 s - in com.bosch.rtc.ecl.eva.model.provider.legacy.OldConfigSyntaxLinkTypeConverterTest
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.098 s - in com.bosch.rtc.ecl.eva.model.provider.legacy.OldConfigSyntaxLinkTypeConverterTest
 convertOldSyntaxIfPresent_IsPresent_Converted(com.bosch.rtc.ecl.eva.model.provider.legacy.OldConfigSyntaxLinkTypeConverterTest)  Time elapsed: 0.004 s
 convertOldSyntaxIfPresent_IsNotPresent_NotConverted(com.bosch.rtc.ecl.eva.model.provider.legacy.OldConfigSyntaxLinkTypeConverterTest)  Time elapsed: 0 s
